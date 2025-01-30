@@ -93,7 +93,12 @@ export const login = TryCatch(async (req, res) => {
 
   return res
     .status(200)
-    .cookie("token", token, { httpOnly: true, maxAge: 7 * 24 * 60 * 60 * 1000 })
+    .cookie("token", token, { 
+      httpOnly: true,
+       maxAge: 7 * 24 * 60 * 60 * 1000,
+       secure:true,
+       sameSite:'None'
+       })
     .json({
       success: true,
       message: `welcome back ${user.username}`,
